@@ -1,0 +1,12 @@
+name: mental_health_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - mlflow>=2.0.0
+      - scikit-learn
+      - pandas
+      - numpy

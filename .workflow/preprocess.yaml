@@ -1,0 +1,62 @@
+name: Automated Data Preprocessing Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  preprocess_data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.12.7
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12.7'
+
+    # Membuat file requirements.txt secara dinamis agar runner bisa menginstal library NLP Anda
+    - name: Create Requirements File
+      run: |
+        cat <<EOF > requirements.txt
+        pandas
+        numpy
+        nltk
+        Sastrawi
+        saka-nlp
+        scikit-learn
+        mpstemmer
+        wordcloud
+        EOF
+
+    - name: Cache Pip Dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Eksekusi script otomasi di dalam folder preprocessing/
+    - name: Run Preprocessing Script
+      run: |
+        python preprocessing/automate_Mujtahidul_Haq_Mahyunda.py
+      env:
+        PYTHONPATH: ${{ github.workspace }}
+
+    # Unggah data hasil preprocessing yang terbentuk di dalam folder preprocessing/
+    - name: Upload Processed Dataset Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: namadataset_preprocessing
+        path: preprocessing/data_clean_mental_health_indo.csv
+        retention-days: 7
