@@ -116,7 +116,7 @@ def automate_preprocessing(filepath, test_size=0.2, random_state=0):
 # Script Guard untuk pengujian lokal/GitHub Actions
 if __name__ == "__main__":
     # 1. Sesuaikan dengan nama file dataset mentah Anda sesuai kriteria Advance
-    path_sample = 'mental-health-indo-dataset-text.csv' 
+    path_sample = '../mental-health-indo-dataset-text.csv' 
     print("Menjalankan testing otomatisasi fungsi...")
     
     # 2. Aktifkan fungsi utama (hilangkan tanda komparasi/comment '#')

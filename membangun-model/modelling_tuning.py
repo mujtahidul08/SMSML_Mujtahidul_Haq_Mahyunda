@@ -37,7 +37,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(current_dir)
 
 # Mengarahkan langsung ke folder preprocessing dan nama file sesuai gambar Anda
-data_path = os.path.join(root_dir, "preprocessing", "data_clean_mental_health_indo1.csv")
+data_path = os.path.join(root_dir, "preprocessing", "data_clean_mental_health_indo.csv")
 
 if not os.path.exists(data_path):
     raise FileNotFoundError(f"File tidak ditemukan di: {data_path}. Pastikan nama file sesuai!")
