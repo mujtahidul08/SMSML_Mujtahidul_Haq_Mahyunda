@@ -20,7 +20,7 @@ from sklearn.metrics import classification_report
 mlflow.sklearn.autolog()
 
 # Set nama eksperimen lokal
-mlflow.set_experiment("Mental_Health_Sentiment_Local_Basic")
+#mlflow.set_experiment("Mental_Health_Sentiment_Local_Basic")
 
 # =========================================================================
 # 2. LOAD DATA & PREPARATION
