@@ -46,8 +46,9 @@ jobs:
     # 7. Build Docker Image Menggunakan MLflow Build-Docker (Kriteria Advance)
     - name: Build Docker Image via MLflow
       run: |
-        mlflow models build-docker -m "mlruns/1/" -n "${{ secrets.DOCKERHUB_USERNAME }}/mental-health-model:latest" --enable-mlserver
-
+        MODEL_PATH=$(find mlruns/ -name "MLmodel" | head -n 1 | xargs dirname)
+        echo "Menggunakan model dari path: $MODEL_PATH"
+        mlflow models build-docker -m "$MODEL_PATH" -n "${{ secrets.DOCKERHUB_USERNAME }}/mental-health-model:latest"
     # 8. Push Docker Image ke Docker Hub
     - name: Push Docker Image to Docker Hub
       run: |
