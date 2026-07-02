@@ -27,8 +27,9 @@ mlflow.sklearn.autolog()
 # =========================================================================
 print("[INFO] Membaca dataset bersih...")
 
-# Membaca langsung di folder yang sama karena dieksekusi di dalam lingkup MLProject
-data_path = "data_clean_mental_health_indo.csv"
+# Mengambil jalur folder tempat file modelling.py ini berada secara dinamis
+base_dir = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.join(base_dir, "data_clean_mental_health_indo.csv")
 
 if not os.path.exists(data_path):
     raise FileNotFoundError(f"File tidak ditemukan di: {data_path}")
