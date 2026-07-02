@@ -27,8 +27,8 @@ jobs:
     # 4. Jalankan MLflow Project (Re-training Otomatis)
     - name: Run MLflow Project
       run: |
-        mlflow run Workflow-CI/MLProject --no-conda
-
+        mlflow run Workflow-CI/MLProject --env-manager local
+        
     # 5. Archive/Simpan Artefak Model ke GitHub (Kriteria Skilled)
     - name: Upload Model Artifact to GitHub
       uses: actions/upload-artifact@v4
